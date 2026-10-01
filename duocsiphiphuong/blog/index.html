@@ -4,29 +4,79 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blog dinh dưỡng giảm cân | Dược sĩ Phi Phượng</title>
-<meta name="description" content="Kiến thức dinh dưỡng giảm cân khoa học, an toàn, bền vững cho người bận rộn – do Dược sĩ Phi Phượng biên soạn.">
+<meta name="description" content="Kiến thức dinh dưỡng giảm cân khoa học, dễ áp dụng cho người bận rộn – biên soạn bởi Dược sĩ Phi Phượng.">
 <link rel="canonical" href="https://duocsiphiphuong.com/blog/">
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font:400 17px/1.7 'Be Vietnam Pro',system-ui,sans-serif;color:#1F2430;background:#fff}
-a{color:#0047AB}
-.wrap{max-width:760px;margin:auto;padding:36px 20px 60px}
-.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #DCE3EE;padding-bottom:14px}
-.top a{text-decoration:none;font-weight:600}
-h1{font:700 clamp(32px,5vw,46px)/1.2 'Playfair Display',serif;margin:28px 0 6px}
-.sub{color:#5B6474;margin:0 0 20px}
-article{border-top:1px solid #DCE3EE;padding:20px 0}
-article h2{font:700 23px/1.35 'Playfair Display',serif;margin:2px 0 6px}
-article h2 a{color:#1F2430;text-decoration:none}
-article h2 a:hover{color:#0047AB}
-.d{font-size:14px;color:#5B6474;margin:0}
-article p{margin:0}
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#1F2937;line-height:1.6}
+a{color:#1D4ED8;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.topbar{background:#0A1638;color:#C9D4F2;font-size:13px;padding:10px 0}
+.topbar .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.topbar b{color:#FFFFFF}
+header{position:sticky;top:0;z-index:10;background:#FFFFFF;border-bottom:1px solid #E3E8F2}
+.head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px}
+.head img{height:52px;display:block}
+.cta{background:#1D4ED8;color:#FFFFFF;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px;white-space:nowrap}
+.cta:hover{background:#1E40AF}
+nav{border-top:1px solid #E3E8F2}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px 24px}
+nav a{color:#1F2937;font-weight:500;font-size:14px;padding:8px 12px;border-radius:8px;white-space:nowrap}
+nav a:hover{background:#EEF2FF;color:#1D4ED8}
+nav a.on{background:#EEF2FF;color:#1D4ED8}
+.hero{background:linear-gradient(135deg,#0A1638,#1D4ED8);color:#FFFFFF;padding:56px 0 48px}
+.hero small{letter-spacing:.15em;text-transform:uppercase;color:#C9D4F2;font-size:12px;font-weight:600}
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,5vw,48px);margin:10px 0 12px;line-height:1.2}
+.hero p{max-width:640px;margin:0;color:#E0E7FF;font-size:17px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;padding:48px 0 64px}
+.list article{border:1px solid #E3E8F2;border-radius:16px;padding:24px;background:#FFFFFF;transition:box-shadow .2s,transform .2s}
+.list article:hover{box-shadow:0 12px 32px rgba(10,22,56,.10);transform:translateY(-2px)}
+.list .d{margin:0 0 8px;font-size:13px;color:#6B7280;font-weight:500}
+.list h2{font-family:'Playfair Display',Georgia,serif;font-size:21px;line-height:1.35;margin:0 0 10px}
+.list h2 a{color:#0A1638}
+.list h2 a:hover{color:#1D4ED8}
+.list article p:last-child{margin:0;color:#4B5563;font-size:15px}
+.box{background:#EEF2FF;border-radius:16px;padding:32px;margin-bottom:64px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.box h3{margin:0 0 6px;font-family:'Playfair Display',Georgia,serif;font-size:24px;color:#0A1638}
+.box p{margin:0;color:#4B5563}
+footer{background:#0A1638;color:#C9D4F2;font-size:14px;padding:32px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:#FFFFFF}
+.float{position:fixed;left:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:20}
+.float a{background:#1D4ED8;color:#FFFFFF;padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.float a.call{background:#0A1638}
+@media(max-width:640px){.head img{height:42px}.cta{padding:9px 14px;font-size:13px}.topbar{display:none}}
 </style>
 </head>
-<body><div class="wrap">
-<div class="top"><a href="/">← Trang chủ</a><a href="https://zalo.me/0934386231" target="_blank" rel="noopener">Nhắn Zalo</a></div>
-<h1>Blog dinh dưỡng giảm cân</h1>
-<p class="sub">Kiến thức khoa học, dễ áp dụng cho người bận rộn – biên soạn bởi Dược sĩ Phi Phượng.</p>
-<article><p class="d">01/10/2026</p><h2><a href="/blog/an-toi-muon-co-gay-tang-can.html">Ăn tối muộn có gây tăng cân không? Góc nhìn khoa học</a></h2><p>Ăn tối muộn có gây tăng cân không? Cùng Dược sĩ Phi Phượng phân tích cơ chế sinh học, nhịp sinh học và cách ăn uống khoa học cho người bận rộn.</p></article>
-</div></body>
+<body>
+<div class="topbar"><div class="wrap"><span>Số 6 Đoàn Thị Liên, Phú Lợi, TP.HCM · Mở cửa 6h30 – 19h00 mỗi ngày</span><span><b>Hotline: 0934 386 231</b> · duocsiphiphuong@gmail.com</span></div></div>
+<header>
+<div class="head wrap"><a href="/index.html"><img src="/images/logo-phi-phuong-cobalt.jpg" alt="Dược sĩ Phi Phượng"></a><a class="cta" href="/index.html#dang-ky">Tư vấn miễn phí →</a></div>
+<nav aria-label="Menu chính"><div class="wrap">
+<a href="/index.html">Trang chủ</a>
+<a href="/VeToi.html">Về Dược sĩ Phi Phượng</a>
+<a class="on" href="/blog/">Blog</a>
+<a href="/Coaching.html">Coaching</a>
+<a href="/Podcast.html">Podcast</a>
+<a href="/TaiNguyen.html">Tài nguyên</a>
+<a href="/BenhLy.html">Dinh dưỡng cho bệnh lý</a>
+<a href="/GiamCan.html">Dinh dưỡng cho giảm cân</a>
+</div></nav>
+</header>
+<section class="hero"><div class="wrap">
+<small>Blog dinh dưỡng</small>
+<h1>Giảm cân khoa học, sống khỏe mỗi ngày</h1>
+<p>Kiến thức dinh dưỡng dễ hiểu, dễ áp dụng cho người bận rộn – biên soạn bởi Dược sĩ Phi Phượng.</p>
+</div></section>
+<main class="wrap">
+<div class="list">
+<article><p class="d">01/10/2026</p><h2><a href="/blog/thieu-ngu-lam-tang-can-nhu-the-nao.html">Thiếu ngủ làm tăng cân như thế nào? Góc nhìn khoa học</a></h2><p>Bài viết phân tích chi tiết thiếu ngủ làm tăng cân như thế nào dựa trên cơ chế nội tiết tố, đồng thời đưa ra giải pháp thực tế cho chủ doanh nghiệp bận rộn.</p></article><article><p class="d">01/10/2026</p><h2><a href="/blog/an-toi-muon-co-gay-tang-can.html">Ăn tối muộn có gây tăng cân không? Góc nhìn khoa học</a></h2><p>Ăn tối muộn có gây tăng cân không? Cùng Dược sĩ Phi Phượng phân tích cơ chế sinh học, nhịp sinh học và cách ăn uống khoa học cho người bận rộn.</p></article>
+</div>
+<div class="box"><div><h3>Bạn cần gợi ý bữa ăn và lộ trình cá nhân hoá?</h3><p>Nhắn Dược sĩ Phi Phượng để được tư vấn phù hợp với lịch làm việc của bạn.</p></div><a class="cta" href="https://zalo.me/0934386231" target="_blank" rel="noopener">Nhắn Zalo ngay →</a></div>
+</main>
+<footer><div class="wrap"><span>© Dược sĩ Phi Phượng · Vóc dáng · Sức khỏe · Bình an</span><span><a href="https://www.facebook.com/DS.PhiPhuong/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.tiktok.com/@duocsiphiphuong" target="_blank" rel="noopener">TikTok</a> · <a href="/LienHe.html">Liên hệ</a></span></div></footer>
+<div class="float"><a href="https://zalo.me/0934386231" target="_blank" rel="noopener">Nhắn Zalo</a><a class="call" href="tel:0934386231">Gọi: 0934 386 231</a></div>
+</body>
 </html>
