@@ -4,6 +4,29 @@
 <meta charset="utf-8">
 <title>Dinh dưỡng cho bệnh lý – Dược sĩ Phi Phượng</title>
 <script src="./support.js"></script>
+<script>
+(function () {
+  function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
+  function run() {
+    var box = document.getElementById('bl-posts');
+    if (!box) return false;
+    if (box.getAttribute('data-done')) return true;
+    box.setAttribute('data-done', '1');
+    fetch('/benh-ly/posts.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (posts) {
+      box.innerHTML = posts.slice(0, 6).map(function (p) {
+        var d = new Date(p.date), ds = isNaN(d) ? '' : d.toLocaleDateString('vi-VN');
+        var tag = p.benh ? '<span style="display:inline-block;background:#EEF2FF;color:#1D4ED8;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;margin-bottom:10px">' + esc(p.benh) + '</span>' : '';
+        return '<article style="background:#FFFFFF;border:1px solid #E3E8F2;border-radius:16px;padding:24px">' + tag +
+          '<p style="margin:0 0 6px;font-size:13px;color:#6B7280">' + ds + '</p>' +
+          '<h3 style="margin:0 0 10px;font-size:20px;line-height:1.35"><a href="/benh-ly/' + encodeURIComponent(p.slug) + '.html" style="color:#0A1638;text-decoration:none">' + esc(p.title) + '</a></h3>' +
+          '<p style="margin:0;color:#4B5563;font-size:15px">' + esc(p.excerpt) + '</p></article>';
+      }).join('');
+    }).catch(function () { box.style.display = 'none'; });
+    return true;
+  }
+  var n = 0, t = setInterval(function () { if (run() || ++n > 100) clearInterval(t); }, 150);
+})();
+</script>
 </head>
 <body>
 <x-dc>
@@ -73,22 +96,6 @@ input,select,textarea,button{font-family:inherit}
 </div>
 <div id="bl-posts" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px"></div>
 </div>
-<script>
-(function () {
-  var box = document.getElementById('bl-posts');
-  function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
-  fetch('/benh-ly/posts.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (posts) {
-    box.innerHTML = posts.slice(0, 6).map(function (p) {
-      var d = new Date(p.date), ds = isNaN(d) ? '' : d.toLocaleDateString('vi-VN');
-      var tag = p.benh ? '<span style="display:inline-block;background:#EEF2FF;color:#1D4ED8;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;margin-bottom:10px">' + esc(p.benh) + '</span>' : '';
-      return '<article style="background:#FFFFFF;border:1px solid #E3E8F2;border-radius:16px;padding:24px">' + tag +
-        '<p style="margin:0 0 6px;font-size:13px;color:#6B7280">' + ds + '</p>' +
-        '<h3 style="margin:0 0 10px;font-size:20px;line-height:1.35"><a href="/benh-ly/' + encodeURIComponent(p.slug) + '.html" style="color:#0A1638;text-decoration:none">' + esc(p.title) + '</a></h3>' +
-        '<p style="margin:0;color:#4B5563;font-size:15px">' + esc(p.excerpt) + '</p></article>';
-    }).join('');
-  }).catch(function () { box.style.display = 'none'; });
-})();
-</script>
 </section>
 <section style="background: #FFFFFF; color: #1F2937; padding: 96px 0">
 <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 40px">
