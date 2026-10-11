@@ -1,0 +1,121 @@
+/* =========================================================
+   site-fixes.css – Dược sĩ Phi Phượng
+   Bổ sung giao diện điện thoại / máy tính bảng cho các trang xuất
+   từ công cụ thiết kế (style viết inline nên cần !important).
+   Lưu ý: khi trang chạy, trình duyệt ghi style dạng "0px", "minmax(0px, 1fr)"
+   nên bộ chọn dùng phần đầu chuỗi (VD "repeat(2,").
+   ========================================================= */
+
+html { -webkit-text-size-adjust: 100%; }
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; }
+
+/* Chữ "Sống chất." ở hero: tăng tương phản trên nền xanh đậm */
+.pp-hero-accent { color: #9DB8FF !important; }
+
+/* Thông báo nhỏ khi gửi form */
+.pp-toast {
+  position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%);
+  width: max-content; max-width: min(92vw, 440px); z-index: 9999;
+  background: #0A1638; color: #FFFFFF; font-size: 15px; line-height: 1.5;
+  padding: 14px 18px; border-radius: 12px; box-shadow: 0 10px 30px rgba(10,22,56,.3);
+}
+.pp-toast.pp-err { background: #B42318; }
+.pp-toast a { color: #9DB8FF; font-weight: 700; }
+.pp-field-error { outline: 2px solid #B42318 !important; outline-offset: 1px; }
+
+/* ---------- Máy tính bảng ---------- */
+@media (max-width: 1024px) {
+  [style*="repeat(12,"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [style*="grid-column: span 4"], [style*="grid-column: span 5"],
+  [style*="grid-column: span 7"], [style*="grid-column: span 8"] { grid-column: 1 / -1 !important; }
+  [style*="repeat(5,"] { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  [style*="repeat(4,"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [style*="padding: 0 40px"], [style*="padding: 0px 40px"], [style*="padding: 80px 40px"] { padding-left: 24px !important; padding-right: 24px !important; }
+  [style*="padding: 16px 40px"] { padding: 12px 24px !important; }
+}
+
+/* ---------- Điện thoại ---------- */
+@media (max-width: 760px) {
+  body { font-size: 16px; padding-bottom: 72px; }
+
+  /* Lưới nhiều cột -> 1 cột (lưới 4–5 ô nhỏ giữ 2 cột) */
+  [style*="repeat(2,"], [style*="repeat(3,"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [style*="repeat(4,"], [style*="repeat(5,"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [style*="minmax(300px, 1fr)"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [style*="grid-column: span 2"] { grid-column: 1 / -1 !important; }
+  [style*="gap: 64px"], [style*="gap: 72px"], [style*="gap: 80px"] { gap: 32px !important; }
+  [style*="gap: 48px"], [style*="gap: 56px"] { gap: 24px !important; }
+
+  /* Khoảng đệm */
+  [style*="padding: 0 40px"], [style*="padding: 0px 40px"], [style*="padding: 80px 40px"],
+  [style*="padding: 0 24px"], [style*="padding: 0px 24px"] { padding-left: 16px !important; padding-right: 16px !important; }
+  [style*="padding: 80px 40px"] { padding-top: 48px !important; padding-bottom: 48px !important; }
+  [style*="padding: 16px 40px"] { padding: 10px 16px !important; }
+  [style*="padding: 10px 24px"] { padding: 8px 16px !important; }
+  [style*="padding: 96px 0"], [style*="padding: 104px 0"], [style*="padding: 112px 0"], [style*="padding: 120px 0"],
+  [style*="padding: 32px 0px 96px"] { padding-top: 56px !important; padding-bottom: 56px !important; }
+  [style*="padding: 0px 0px 96px"] { padding-bottom: 56px !important; }
+  [style*="padding: 72px 0"], [style*="padding: 80px 0"], [style*="padding: 88px 0"], [style*="padding: 64px 0"] { padding-top: 48px !important; padding-bottom: 48px !important; }
+  [style*="padding: 64px 0px 32px"], [style*="padding: 64px 0 32px"] { padding: 40px 0 24px !important; }
+  [style*="padding: 64px;"], [style*="padding: 56px;"], [style*="padding: 48px;"] { padding: 24px !important; }
+  [style*="padding: 40px;"], [style*="padding: 36px;"], [style*="padding: 32px;"] { padding: 22px !important; }
+
+  /* Cỡ chữ tiêu đề */
+  h1, [style*="font-size: 73px"], [style*="font-size: 67px"], [style*="font-size: 64px"],
+  [style*="font-size: 59px"], [style*="font-size: 56px"] { font-size: 38px !important; line-height: 1.15 !important; }
+  [style*="font-size: 53px"], [style*="font-size: 50px"], [style*="font-size: 48px"],
+  [style*="font-size: 45px"], [style*="font-size: 43px"], [style*="font-size: 42px"],
+  [style*="font-size: 41px"], [style*="font-size: 40px"] { font-size: 30px !important; line-height: 1.2 !important; }
+  [style*="font-size: 39px"], [style*="font-size: 38px"], [style*="font-size: 36px"],
+  [style*="font-size: 34px"], [style*="font-size: 32px"] { font-size: 26px !important; line-height: 1.25 !important; }
+  [style*="font-size: 28px"], [style*="font-size: 26px"] { font-size: 22px !important; }
+  [style*="font-size: 24px"], [style*="font-size: 22px"] { font-size: 19px !important; }
+  [style*="font-size: 20px"], [style*="font-size: 19px"] { font-size: 17px !important; }
+
+  /* Header gọn: ẩn ô tìm kiếm, logo nhỏ, menu 1 hàng vuốt ngang */
+  header input[type="search"] { display: none !important; }
+  header img { height: 44px !important; }
+  header a[href="#dang-ky"], header a[href*="dang-ky"], header a[href="#ung-tuyen"] { padding: 10px 14px !important; font-size: 13px !important; }
+  header nav, header nav > div { flex-wrap: nowrap !important; overflow-x: auto !important; white-space: nowrap; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  header nav a { flex-shrink: 0; }
+
+  /* Thanh trên cùng: chỉ giữ hotline */
+  [style*="color: rgb(201, 212, 242)"][style*="font-size: 13px"] > div > span:first-child,
+  [style*="color: #C9D4F2"][style*="font-size: 13px"] > div > span:first-child { display: none !important; }
+  [style*="color: rgb(201, 212, 242)"][style*="font-size: 13px"],
+  [style*="color: #C9D4F2"][style*="font-size: 13px"] { padding: 6px 16px !important; text-align: center; }
+
+  /* Hàng ngang tự xuống dòng (form email, nút…) */
+  [style*="display: flex"][style*="gap"] { flex-wrap: wrap; }
+  input, select, textarea { max-width: 100%; min-width: 0 !important; font-size: 16px !important; }
+  [style*="flex-direction: column"] > * { max-width: 100%; min-width: 0; }
+  [role="tablist"] { flex-wrap: nowrap !important; overflow-x: auto; max-width: 100%; }
+  [style*="width: 280px"][style*="border-radius: 40px"] { max-width: 100%; overflow: hidden; }
+
+  /* Ảnh không quá cao */
+  [style*="height: 520px"], [style*="height: 480px"], [style*="height: 460px"],
+  [style*="height: 440px"], [style*="height: 420px"], [style*="height: 400px"] { height: 320px !important; }
+  [style*="min-height: 520px"], [style*="min-height: 480px"], [style*="min-height: 440px"] { min-height: 0 !important; }
+
+  /* Ô "~100 khách hàng" ở hero không tràn mép */
+  [style*="position: absolute"][style*="left: -36px"] { left: 12px !important; bottom: 12px !important; padding: 12px 16px !important; }
+
+  /* Nút Zalo / Gọi: thành thanh cố định dưới đáy, không che nội dung */
+  [style*="position: fixed"][style*="left: 20px"][style*="bottom: 20px"] {
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    flex-direction: row !important; flex-wrap: nowrap !important; gap: 0 !important;
+    background: #FFFFFF; box-shadow: 0 -4px 16px rgba(10,22,56,.12);
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom)) !important;
+  }
+  [style*="position: fixed"][style*="left: 20px"][style*="bottom: 20px"] > a {
+    flex: 1 1 0; min-width: 0; justify-content: center; margin: 0 4px; min-height: 48px;
+    font-size: 14px !important; padding: 8px 8px !important; gap: 6px !important;
+    white-space: nowrap; flex-wrap: nowrap !important;
+  }
+}
+
+@media (max-width: 380px) {
+  [style*="repeat(4,"], [style*="repeat(5,"] { grid-template-columns: minmax(0, 1fr) !important; }
+  h1 { font-size: 32px !important; }
+}
