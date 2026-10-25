@@ -160,6 +160,9 @@ input[type=text],input[type=tel],input[type=email],input[type=number],select{fon
 .note{font-size:13px;color:var(--muted)}
 .note.ok{color:var(--blue);font-weight:600}
 .note.bad{color:#C62828;font-weight:600}
+.done{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.done p{color:var(--muted)}
+.done small{color:var(--muted);font-size:13px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px}
 .field small.err{display:none;color:#C62828;font-size:13px}
 .field.bad small.err{display:block}
@@ -337,7 +340,7 @@ footer{background:var(--ink);color:#C4CAD4;margin-top:72px}
       <h2>3 bước để nhận quà từ Phi Phượng</h2>
       <ol class="steps">
         <li><span class="n">1</span><div><b>Điền thông tin và chọn quà</b><span>Họ tên, tuổi, số điện thoại, Gmail và món quà bạn thích.</span></div></li>
-        <li><span class="n">2</span><div><b>Gửi phiếu qua Zalo</b><span>Bấm nút gửi phiếu, tin nhắn tự sao chép. Dán gửi Zalo 0934 386 231.</span></div></li>
+        <li><span class="n">2</span><div><b>Gửi thông tin nhận quà</b><span>Bấm nút gửi, Phi Phượng nhận được thông tin của bạn ngay.</span></div></li>
         <li><span class="n">3</span><div><b>Vào nhóm Zalo nhận quà</b><span>Tham gia nhóm Zalo để nhận quà và lịch tư vấn 1-1 với Phi Phượng.</span></div></li>
       </ol>
     </div>
@@ -386,16 +389,16 @@ footer{background:var(--ink);color:#C4CAD4;margin-top:72px}
           <option>Khác, mình sẽ chia sẻ thêm</option>
         </select>
       </div>
-      <div class="field">
-        <span class="lbl">Tin nhắn gửi Phi Phượng</span>
-        <div class="msg" id="msg"></div>
-      </div>
       <div class="form-actions">
-        <button type="submit" class="btn btn-blue" id="copyBtn">Gửi phiếu nhận quà</button>
-        <a class="btn btn-ghost" href="https://zalo.me/0934386231" target="_blank" rel="noopener">Mở Zalo Phi Phượng</a>
-        <a class="btn btn-ghost" id="groupBtn" href="https://zalo.me/g/ewbxkf842" target="_blank" rel="noopener">Tham gia nhóm Zalo nhận quà</a>
+        <button type="submit" class="btn btn-blue" id="sendBtn">Gửi thông tin nhận quà</button>
       </div>
       <p class="note" id="note">Thông tin của bạn chỉ dùng để Phi Phượng gửi quà và tư vấn.</p>
+      <div class="done" id="done" hidden>
+        <h3>Phi Phượng đã nhận thông tin của bạn</h3>
+        <p>Bước cuối: bấm nút bên dưới để tham gia nhóm Zalo, nhận quà và lịch tư vấn 1-1.</p>
+        <a class="btn btn-blue" href="https://zalo.me/g/ewbxkf842" target="_blank" rel="noopener">Tham gia nhóm Zalo nhận quà</a>
+        <small>Cần hỗ trợ, bạn nhắn Zalo 0934 386 231.</small>
+      </div>
     </form>
   </div>
 </div>
@@ -435,13 +438,7 @@ footer{background:var(--ink);color:#C4CAD4;margin-top:72px}
     lastSent=body;
     try{fetch(SHEET_HOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:body}).catch(function(){lastSent=''})}catch(e){lastSent=''}
   }
-  var form=document.getElementById('claimForm'),msg=document.getElementById('msg'),note=document.getElementById('note');
-  function build(){
-    var name=val('fname')||'[họ tên]',age=val('age'),tel=val('tel')||'[số điện thoại]',email=val('email')||'[Gmail]';
-    var gifts=[].slice.call(form.querySelectorAll('input[name=gift]:checked')).map(function(i){return i.value});
-    var goal=document.getElementById('goal').value;
-    msg.textContent='Chào chị Phi Phượng, em là '+name+(age?', '+age+' tuổi':'')+'.\nSĐT: '+tel+'\nGmail: '+email+'\nEm muốn nhận quà: '+(gifts.length?gifts.join(', '):'[chọn quà]')+'\nMục tiêu của em: '+goal+'.\nEm xin tham gia nhóm Zalo nhận quà ạ.';
-  }
+  var form=document.getElementById('claimForm'),note=document.getElementById('note');
   function val(id){return document.getElementById(id).value.trim()}
   function check(){
     var ok=true;
@@ -453,17 +450,16 @@ footer{background:var(--ink);color:#C4CAD4;margin-top:72px}
     mark('f-email',!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email')));
     return ok;
   }
-  form.addEventListener('input',build);form.addEventListener('change',build);build();
   function selectText(el){try{var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}}
   function copy(text,el,done,fail){
     try{navigator.clipboard.writeText(text).then(done,function(){selectText(el);fail()})}catch(e){selectText(el);fail()}
   }
   form.addEventListener('submit',function(e){
-    e.preventDefault();build();
+    e.preventDefault();
     if(!check()){var b=form.querySelector('.field.bad input');if(b)b.focus();note.textContent='Bạn kiểm tra lại các ô màu đỏ giúp Phi Phượng nhé.';note.className='note bad';return}
     saveLead();
-    copy(msg.textContent,msg,function(){note.textContent='Đã sao chép phiếu. Mở Zalo dán gửi Phi Phượng, rồi bấm Tham gia nhóm Zalo để nhận quà nhé.';note.className='note ok'},
-      function(){note.textContent='Phiếu đã được bôi đen. Bạn nhấn giữ để sao chép, gửi Zalo Phi Phượng rồi tham gia nhóm Zalo nhé.';note.className='note ok'});
+    [].forEach.call(form.children,function(el){if(el.id!=='done')el.hidden=true});
+    var d=document.getElementById('done');d.hidden=false;d.scrollIntoView({behavior:'smooth',block:'center'});
   });
   var pb=document.getElementById('copyPhone'),ph=document.getElementById('phone');
   pb.addEventListener('click',function(){copy('0934386231',ph,function(){pb.textContent='Đã chép'},function(){pb.textContent='Nhấn giữ số để chép'})});
